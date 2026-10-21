@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # KASINO — KAS Informatics Organization
 
 Aplikasi mobile UI/UX untuk simulasi pengelolaan kas Himpunan Mahasiswa Informatika, dibuat dengan React Native, Expo, TypeScript, dan Expo Router.
@@ -43,3 +44,6 @@ Login → Dashboard → Pemasukan/Verifikasi → Pengeluaran → Riwayat → Det
 
 ## Catatan dokumentasi
 Screenshot aktual setiap layar, tautan repository publik, tautan/QR demo yang telah diuji, dan video demo maksimal 5 menit perlu ditambahkan setelah aplikasi dijalankan pada perangkat. Tautan demo dan screenshot tidak dicantumkan sebagai sudah tersedia karena belum diterbitkan atau diverifikasi.
+=======
+# ContohAppKAS
+>>>>>>> b046bb13c36300b18330ca3c3a8f490bdb07de69
