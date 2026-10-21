@@ -1,0 +1,9 @@
+import React,{useState} from "react";
+import {ScrollView,Text,StyleSheet,Alert} from "react-native";
+import * as DocumentPicker from "expo-document-picker";
+import {AppHeader} from "../components/AppHeader";
+import {AppInput} from "../components/AppInput";
+import {AppButton} from "../components/AppButton";
+import {C} from "../constants/theme";
+export default function UploadProof(){const [period,setPeriod]=useState("Oktober 2026");const [amount,setAmount]=useState("5000");const [file,setFile]=useState("");return <ScrollView contentContainerStyle={s.page} keyboardShouldPersistTaps="handled"><AppHeader title="Unggah bukti transfer"/><Text style={s.title}>Pengajuan pembayaran</Text><Text style={s.desc}>Bukti hanya dipilih di perangkat untuk simulasi UI, tidak diunggah ke server.</Text><AppInput label="Periode kas" placeholder="Contoh: Oktober 2026" value={period} onChangeText={setPeriod}/><AppInput label="Nominal transfer (Rp)" placeholder="Minimal Rp5.000" value={amount} onChangeText={setAmount} keyboardType="numeric"/><Text style={s.label}>Bukti transfer</Text><AppButton title={file? "Pilih file lain":"Pilih file bukti"} variant="outline" onPress={async()=>{const result=await DocumentPicker.getDocumentAsync({copyToCacheDirectory:true});if(!result.canceled)setFile(result.assets[0].name)}}/><Text style={s.file}>{file||"Belum ada file dipilih"}</Text><AppButton title="Simulasikan pengajuan" onPress={()=>Alert.alert("Simulasi pengajuan",`Periode ${period}, ${amount}. Status: menunggu verifikasi. Tidak ada data yang dikirim.`)}/><Text style={s.note}>Status menunggu verifikasi bukan berarti pembayaran telah diterima.</Text></ScrollView>}
+const s=StyleSheet.create({page:{padding:20,gap:10},title:{fontSize:22,fontWeight:"800",color:C.navy},desc:{fontSize:13,color:C.navy,marginBottom:12},label:{fontSize:13,fontWeight:"700",color:C.navy},file:{fontSize:12,color:C.navy,paddingVertical:8},note:{fontSize:11,color:C.navy,marginTop:8}});

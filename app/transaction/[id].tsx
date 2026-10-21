@@ -1,0 +1,9 @@
+import React from "react";
+import {ScrollView,Text,View,StyleSheet} from "react-native";
+import {useLocalSearchParams} from "expo-router";
+import {AppHeader} from "../../components/AppHeader";
+import {StatusBadge} from "../../components/StatusBadge";
+import {transactions,rupiah} from "../../data/dummy";
+import {C} from "../../constants/theme";
+export default function Detail(){const {id}=useLocalSearchParams<{id:string}>();const tx=transactions.find(t=>t.id===id)||transactions[0];return <ScrollView contentContainerStyle={s.page}><AppHeader title="Detail transaksi"/><View style={s.hero}><Text style={s.id}>{tx.id}</Text><Text style={s.amount}>{tx.type==="Pengeluaran"?"−":"+"}{rupiah(tx.amount)}</Text><StatusBadge status={tx.status}/></View><Text style={s.section}>Informasi transaksi</Text>{[["Jenis transaksi",tx.type],["Tanggal",tx.date],["Metode",tx.method],["Judul",tx.title],["Catatan",tx.note]].map(([k,v])=><View key={k} style={s.line}><Text style={s.key}>{k}</Text><Text style={s.value}>{v}</Text></View>)}<View style={s.notice}><Text style={s.noticeTitle}>Catatan integritas</Text><Text style={s.noticeText}>Transaksi final bersifat permanen pada rancangan KASINO. Layar ini hanya menampilkan detail; tidak tersedia tindakan edit atau hapus.</Text></View></ScrollView>}
+const s=StyleSheet.create({page:{padding:20,gap:14},hero:{alignItems:"center",gap:10,padding:24,backgroundColor:C.navy,borderRadius:18},id:{color:C.white,fontSize:13},amount:{color:C.white,fontSize:28,fontWeight:"900"},section:{fontSize:18,fontWeight:"800",color:C.navy},line:{paddingVertical:12,borderBottomWidth:1,borderBottomColor:C.blue+"44",gap:4},key:{fontSize:12,color:C.blue},value:{fontSize:14,color:C.navy,fontWeight:"700"},notice:{borderWidth:1,borderColor:C.blue,borderRadius:12,padding:14,gap:6},noticeTitle:{fontWeight:"800",color:C.navy},noticeText:{fontSize:12,color:C.navy,lineHeight:18}});

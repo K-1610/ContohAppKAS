@@ -1,0 +1,10 @@
+import React,{useState} from "react";
+import {ScrollView,Text,StyleSheet,Alert} from "react-native";
+import {useRouter} from "expo-router";
+import {AppHeader} from "../components/AppHeader";
+import {AppInput} from "../components/AppInput";
+import {AppButton} from "../components/AppButton";
+import {C} from "../constants/theme";
+export default function Register(){const r=useRouter();const [name,setName]=useState("");const [nim,setNim]=useState("");const [email,setEmail]=useState("");const [err,setErr]=useState(false);
+return <ScrollView contentContainerStyle={s.page} keyboardShouldPersistTaps="handled"><AppHeader title="Registrasi"/><Text style={s.title}>Buat akun Anggota</Text><Text style={s.desc}>Semua pendaftaran umum otomatis menggunakan role Anggota.</Text><AppInput label="Nama lengkap" placeholder="Masukkan nama lengkap" value={name} onChangeText={setName} error={err&&!name.trim()?"Nama wajib diisi":undefined}/><AppInput label="NIM" placeholder="Masukkan NIM" value={nim} onChangeText={setNim} error={err&&!nim.trim()?"NIM wajib diisi":undefined}/><AppInput label="Email" placeholder="nama@email.com" keyboardType="email-address" value={email} onChangeText={setEmail} error={err&&!email.includes("@")?"Masukkan email yang valid":undefined}/><AppInput label="Password" placeholder="Buat password" secureTextEntry/><Text style={s.role}>Role akun: Anggota</Text><AppButton title="Simulasikan registrasi" onPress={()=>{setErr(true);if(name.trim()&&nim.trim()&&email.includes("@"))Alert.alert("Simulasi berhasil","Form registrasi valid. Tidak ada akun yang disimpan.",[{text:"Kembali ke login",onPress:()=>r.replace("/") }])}}/><Text style={s.note}>Tidak ada data yang dikirim atau disimpan secara permanen.</Text></ScrollView>}
+const s=StyleSheet.create({page:{padding:22,gap:10},title:{fontSize:24,fontWeight:"800",color:C.navy},desc:{fontSize:13,color:C.navy,marginBottom:14},role:{padding:14,borderWidth:1,borderColor:C.blue,borderRadius:10,color:C.navy,fontWeight:"700",marginBottom:10},note:{fontSize:11,color:C.navy,textAlign:"center"}});

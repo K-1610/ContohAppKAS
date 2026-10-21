@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "KASINO",
+    "slug": "kasino-uts",
+    "scheme": "kasino",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      "expo-router",
+      "expo-document-picker",
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
